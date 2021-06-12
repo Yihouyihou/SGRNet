@@ -20,12 +20,6 @@ x_transforms = transforms.Compose([
 y_transforms = transforms.ToTensor()
 
 
-for i in range(101,105):
-    img=Image.open('C:/Users/zya/Desktop/ACCESS/BCFM/定位（figure7）/'+str(i)+'cell.png')
-    img=np.array(img)
-    np.save('C:/Users/zya/Desktop/ACCESS/BCFM/定位（figure7）/'+str(i)+'.npy',img)
-    print(img.dtype)
-print('done')
 
 start=101
 
@@ -35,13 +29,9 @@ patch_size=256
 
 img_size=256
 
-# test_dataset = MyDataSet(root='C:/Users/zya/Desktop/UW/dataset/', start=start, end=end, label=None,
-#                          transform=x_transforms, target_transform=y_transforms)
-# test_dataset = MyDataSet(root='C:/Users/zya/Desktop/PD-L1-1/100_img_patch/', start=start, end=end, label=None,
-#                           transform=x_transforms, target_transform=y_transforms)
-test_dataset = MyDataSet(root='C:/Users/zya/Desktop/BCFM/dataset_test/', start=0,end=1600, label=None,
+test_dataset = MyDataSet(root="PATH", start=0,end=1600, label=None,
                          transform=x_transforms, target_transform=y_transforms)
-test_dataset = MyDataSet(root='C:/Users/zya/Desktop/ACCESS/BCFM/定位（figure7）/', start=101,end=105, label=None,
+test_dataset = MyDataSet(root="PATH",C:/Users/zya/Desktop/ACCESS/BCFM/定位（figure7）/', start=101,end=105, label=None,
                          transform=x_transforms, target_transform=y_transforms)
 # ----------------------------- Evaluating model------------------------------
 
@@ -53,9 +43,7 @@ print(device)
 model = UNet(3, 1).to(device)
 
 model_name='pretrain_PDL1'
-#checkpoint = torch.load('C:/Users/zya/Desktop/train0424_1641/train0424_1641.pth.tar')
-#checkpoint = torch.load('./'+model_name+'.pth.tar')
-checkpoint = torch.load('C:/Users/zya/Desktop/BCFM/SMRRN_BCFM_2.601.pth.tar')
+checkpoint = torch.load('PATH/TO/MODEL')
 #checkpoint = torch.load('./pretrain1731.pth.tar')
 
 model.load_state_dict(checkpoint['state_dict'])
